@@ -2,7 +2,6 @@
 currentDayEl = $("#currentDay");
 timeBlocksContainerEl = $(".container");
 
-
 // current day stuff
 var setCurrentDay = function () {
     currentDayEl.text(moment().format("dddd, MMMM Do"));
@@ -23,6 +22,28 @@ var currentDayTimeout = function () {
 };
 
 // create elements for timeblocks stuff
+var createTimeBlocks = function () {
+    for (var i = 9; i < 18; i++) {
+        var timeBlockEl = $("<div>");
+        timeBlockEl.addClass("row");
+        timeBlockEl.data("hour", i);
+
+        var timeEl = $("<div>");
+        timeEl.addClass("col-1")
+        timeEl.text("todo" + i);
+
+        var taskEl = $("<div>");
+        taskEl.addClass("col-10")
+        taskEl.text("todo" + i);
+
+        var saveEl = $("<div>");
+        saveEl.addClass("col-1")
+        saveEl.text("todo" + i);
+
+        timeBlockEl.append(timeEl, taskEl, saveEl);
+        timeBlocksContainerEl.append(timeBlockEl);
+    }
+}
 // timers for timeblocks stuff
 // eventhandlers for timeblock stuff
 
@@ -31,3 +52,4 @@ var currentDayTimeout = function () {
 // start
 setCurrentDay();
 currentDayTimeout();
+createTimeBlocks();
