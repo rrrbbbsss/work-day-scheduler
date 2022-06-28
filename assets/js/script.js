@@ -27,6 +27,7 @@ var currentDayTimeout = function () {
     createTimeOutInterval("day", setCurrentDay, 24 * 60 * 60 * 1000);
 };
 
+
 // create elements for timeblocks stuff
 var createTimeBlocks = function () {
     for (var i = 9; i < 18; i++) {
@@ -41,7 +42,7 @@ var createTimeBlocks = function () {
         timeEl.text((timeMod12 > 0 && timeMod12 || i) + (i - 12 >= 0 && "PM" || "AM"));
 
         var taskEl = $("<div>");
-        taskEl.addClass("col-10 text-left p-3 " + getTaskState(i));
+        taskEl.addClass(createTaskClass(i));
         taskEl.text(getSavedtask(i));
 
         var saveEl = $("<div>");
@@ -53,7 +54,7 @@ var createTimeBlocks = function () {
     }
 };
 
-var getTaskState = function(hour) {
+var getTaskState = function (hour) {
     currentHour = moment().hour();
     if (hour > currentHour) {
         return "future"
@@ -66,11 +67,31 @@ var getTaskState = function(hour) {
     }
 };
 
+var createTaskClass = function (hour) {
+    return "col-10 task text-left p-3 " + getTaskState(hour);
+}
+
+var setTaskStates = function () {
+    currentHour = moment().hour();
+    $(".task").each(function () {
+        var hour = $(this).parent().data("hour");
+        var classes =  createTaskClass(hour);
+        $(this)
+            .removeClass()
+            .addClass(classes);
+    })
+};
+
 // timers for timeblocks stuff
+var timeBlockTimeout = function () {
+    createTimeOutInterval("hour", setTaskStates, 60 * 60 * 1000);
+};
+
 // eventhandlers for timeblock stuff
 
+
 // save/load tasks in timeblocks
-var getSavedtask = function(time) {
+var getSavedtask = function (time) {
     return "todo";
 };
 
@@ -78,3 +99,4 @@ var getSavedtask = function(time) {
 setCurrentDay();
 currentDayTimeout();
 createTimeBlocks();
+timeBlockTimeout();
