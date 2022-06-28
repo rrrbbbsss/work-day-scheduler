@@ -1,6 +1,11 @@
+// elements
+currentDayEl = $("#currentDay");
+timeBlocksContainerEl = $(".container");
+
+
 // current day stuff
 var setCurrentDay = function () {
-    $("#currentDay").text(moment().format("dddd, MMMM Do"));
+    currentDayEl.text(moment().format("dddd, MMMM Do"));
 };
 
 var currentDayTimeout = function () {
