@@ -70,6 +70,8 @@ var createTimeBlocks = function () {
     }
 };
 
+// helper functions for creating timeblock elements
+// returns the class to use for element based off hour
 var getTaskState = function (hour) {
     currentHour = moment().hour();
     if (hour > currentHour) {
@@ -171,7 +173,6 @@ var main = function () {
     // start timeouts 
     currentDayTimeout();
     timeBlockTimeout();
-
 };
 
 
