@@ -43,7 +43,7 @@ var currentDayTimeout = function () {
 
 // create elements for timeblocks stuff
 var createTimeBlocks = function () {
-    for (var i = 9; i < 18; i++) {
+    for (var i = schedulerData.startHour; i <= schedulerData.endHour; i++) {
         var timeBlockEl = $("<div>");
         timeBlockEl.addClass("row time-block");
         timeBlockEl.data("hour", i);
@@ -55,8 +55,8 @@ var createTimeBlocks = function () {
         timeEl.text((timeMod12 > 0 && timeMod12 || i) + (i - 12 >= 0 && "PM" || "AM"));
 
         var taskEl = $("<div>");
-        taskEl.addClass(createTaskClass(i));
-        taskEl.text(getSavedtask(i));
+        taskEl.addClass(createTaskClassList(i));
+        taskEl.text(schedulerData.tasks[i - schedulerData.startHour] || "");
 
         var saveEl = $("<div>");
         saveEl.addClass("col-1 saveBtn d-flex align-items-center justify-content-center");
