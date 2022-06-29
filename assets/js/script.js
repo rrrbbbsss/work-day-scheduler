@@ -1,3 +1,15 @@
+// globals
+var schedulerData = {
+    tasks: [],
+    startHour: 9,
+    endHour: 17,
+    // return the task that corresponds to the hour
+    setTaskAtHour: function (hour, text) {
+        this.tasks[hour - this.startHour] = text;
+    }
+};
+
+
 // elements
 currentDayEl = $("#currentDay");
 timeBlocksContainerEl = $(".container");
