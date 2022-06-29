@@ -11,8 +11,9 @@ var schedulerData = {
 
 
 // elements
-currentDayEl = $("#currentDay");
-timeBlocksContainerEl = $(".container");
+var currentDayEl = $("#currentDay");
+var timeBlocksContainerEl = $(".container");
+
 
 // specify an `end` period that when reached will call `fn` 
 // then call `fn` every `delay`
