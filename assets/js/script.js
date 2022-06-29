@@ -123,8 +123,21 @@ var clearTasks = function () {
     location.reload();
 };
 
+
+// main
+var main = function () {
+    // set current day
+    setCurrentDay();
+    // load up tasks from localstorage
+    loadTasks();
+    // createTime Blocks
+    createTimeBlocks();
+    // start timeouts 
+    currentDayTimeout();
+    timeBlockTimeout();
+
+};
+
+
 // start
-setCurrentDay();
-currentDayTimeout();
-createTimeBlocks();
-timeBlockTimeout();
+main();
