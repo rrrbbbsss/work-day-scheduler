@@ -80,9 +80,10 @@ var getTaskState = function (hour) {
     }
 };
 
-var createTaskClass = function (hour) {
+// returns the class list for a task
+var createTaskClassList = function (hour) {
     return "col-10 task text-left p-3 " + getTaskState(hour);
-}
+};
 
 var setTaskStates = function () {
     currentHour = moment().hour();
