@@ -37,7 +37,10 @@ var setCurrentDay = function () {
 };
 
 var currentDayTimeout = function () {
-    createTimeOutInterval("day", setCurrentDay, 24 * 60 * 60 * 1000);
+    createTimeOutInterval("hour",
+        // set the day and clear the tasks for a new day
+        () => { setCurrentDay(); clearTasks(); }, 
+        24 * 60 * 60 * 1000);
 };
 
 
