@@ -105,9 +105,22 @@ var timeBlockTimeout = function () {
 // eventhandlers for timeblock stuff
 
 
-// save/load tasks in timeblocks
-var getSavedtask = function (time) {
-    return "todo";
+// loadsave/clear tasks
+var loadTasks = function () {
+    schedulerData.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+};
+var saveTask = function (hour, text) {
+    // update tasks array
+    schedulerData.setTaskAtHour(hour, text);
+    // save it to local storage
+    localStorage.setItem("tasks", JSON.stringify(schedulerData.tasks));
+};
+var clearTasks = function () {
+    // wipe tasks out
+    schedulerData.tasks = [];
+    localStorage.setItem("tasks", JSON.stringify(schedulerData.tasks));
+    // reload to force loading empty saved state instead of updating in place
+    location.reload();
 };
 
 // start
