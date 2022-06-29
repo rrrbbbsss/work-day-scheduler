@@ -85,11 +85,12 @@ var createTaskClassList = function (hour) {
     return "col-10 task text-left p-3 " + getTaskState(hour);
 };
 
+//  update all tasks state classes as the day progresses
 var setTaskStates = function () {
     currentHour = moment().hour();
     $(".task").each(function () {
         var hour = $(this).parent().data("hour");
-        var classes =  createTaskClass(hour);
+        var classes = createTaskClassList(hour);
         $(this)
             .removeClass()
             .addClass(classes);
