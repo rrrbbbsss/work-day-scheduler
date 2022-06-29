@@ -103,7 +103,40 @@ var timeBlockTimeout = function () {
 };
 
 // eventhandlers for timeblock stuff
+var saveButtonHandler = function () {
+    var hour = $(this)
+        .parent()
+        .data("hour");
+    var text = $(this)
+        .parent()
+        .children(".task")
+        .text();
+    saveTask(hour, text);
+};
+var editTaskClickHandler = function () {
+    // run if element is not focused otherwise it will error the second time clicked
+    if (!$(this).is(":focus")) {
+        var text = $(this).text();
+        var textInput = $("<textarea>")
+            .addClass("textarea " + $(this).attr("class"))
+            .val(text);
+        $(this).replaceWith(textInput);
+        textInput.trigger("focus");
+    }
+};
+var editTaskBlurHandler = function () {
+    var text = $(this).val();
+    var div = $("<div>")
+        .addClass($(this).attr("class"))
+        .removeClass("textarea")
+        .text(text);
+    $(this).replaceWith(div);
+};
 
+// register handlers
+timeBlocksContainerEl.on('click', ".saveBtn", saveButtonHandler);
+timeBlocksContainerEl.on('click', ".task", editTaskClickHandler);
+timeBlocksContainerEl.on('blur', ".task", editTaskBlurHandler);
 
 // loadsave/clear tasks
 var loadTasks = function () {
